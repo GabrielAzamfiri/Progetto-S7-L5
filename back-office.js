@@ -84,7 +84,7 @@ const handleDelete = () => {
         }
       })
       .then(prodottoCancellato => {
-        alert("Hai eliminato il prodotto " + prodottoCancellato.brand + " " + prodottoCancellato.name);
+        // alert("Hai eliminato il prodotto " + prodottoCancellato.brand + " " + prodottoCancellato.name);
         // l'alert è bloccante, questa operazione avverrà solo dopo che l'utente lo chiuderà
         // se non usassimo un alert qui servirebbe ritardare l'esecuzione del metodo assign di window,
         // ma siccome alert è "bloccante" in questo specifico caso non occorre
