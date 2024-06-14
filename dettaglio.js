@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", function () {
       if (resp.ok) {
         return resp.json();
       } else {
-        throw new Error("Errore nella fetch");
+        throw `Errore ${resp.status} : errore nella creazione del prodotto`;
       }
     })
     .then(prodotto => {
@@ -26,24 +26,24 @@ window.addEventListener("DOMContentLoaded", function () {
 
       const img = document.createElement("img");
       img.src = prodotto.imageUrl;
-      img.className = "object-fit-cover my-3 w-100";
+      img.className = "object-fit-cover my-3 w-100 border border-info";
       img.setAttribute("height", "500");
       const h2 = document.createElement("h2");
       h2.innerText = prodotto.brand + " " + prodotto.name;
       const price = document.createElement("p");
       price.innerText = prodotto.price + " $";
-      price.className = "text-primary fs-3 fw-bold";
+      price.className = "text-info fs-3 fw-bold";
       const description = document.createElement("p");
       description.innerText = prodotto.description;
       description.className = " fs-5 fw-bold";
       const modifica = document.createElement("a");
       modifica.innerText = "Modifica";
-      modifica.className = "btn  btn-success fs-5 my-3";
+      modifica.className = "btn  btn-info fs-5 my-3";
       modifica.addEventListener("click", handleEditBtnClick);
       col.append(img, h2, price, description, modifica);
       container.append(col);
     })
-    .catch(err => console.log(err));
+    .catch(err => alert(err));
 });
 
 const handleEditBtnClick = () => {

@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", function () {
     // 2) il testo del subtitle dovrà riflettere la modalità modifica
     subtitle.innerText = "—— Modifica Prodotto";
     submitBtn.innerText = "Modifica";
-    submitBtn.classList.add("btn-success");
+    submitBtn.classList.add("btn-info");
     // 3) il bottone delete diventa visibile
     deleteBtn.classList.remove("d-none");
     resetBtn.classList.add("d-none");
@@ -55,19 +55,17 @@ window.addEventListener("DOMContentLoaded", function () {
         document.getElementById("price").value = prodotto.price;
         document.getElementById("brand").value = prodotto.brand;
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   } else {
     // qui dentro ci entriamo quando siamo in modalità CREAZIONE per via dell'assenza dell'id
     subtitle.innerText = "—— Crea Prodotto";
-    submitBtn.classList.add("btn-info");
+    submitBtn.classList.add("btn-success");
   }
 });
 
 const handleDelete = () => {
-  // chiediamo conferma all'utente di voler eliminare
-  const hasConfirmed = confirm("sei sicuro di voler eliminare questo prodotto?");
-
-  if (hasConfirmed) {
+  const deleteModalBtn = document.getElementById("delete-modal-btn");
+  deleteModalBtn.addEventListener("click", () => {
     // se accetta procediamo all'effettiva rimozione
     fetch(URL, {
       method: "DELETE",
@@ -92,8 +90,8 @@ const handleDelete = () => {
         // ma siccome alert è "bloccante" in questo specifico caso non occorre
         window.location.assign("./index.html");
       })
-      .catch(err => console.log(err));
-  }
+      .catch(err => alert(err));
+  });
 };
 
 const handleSubmit = e => {
@@ -123,7 +121,7 @@ const handleSubmit = e => {
       if (resp.ok) {
         return resp.json();
       } else {
-        throw new Error("Errore nella creazione del prodotto");
+        throw `Errore ${resp.status} : errore nella creazione del prodotto`;
       }
     })
     .then(prodottoCreato => {
@@ -141,5 +139,5 @@ const handleSubmit = e => {
         e.target.reset(); // reset dei campi del form solo in modalità CREAZIONE (POST)
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => alert(err));
 };

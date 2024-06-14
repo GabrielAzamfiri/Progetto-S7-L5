@@ -27,6 +27,8 @@ window.addEventListener("DOMContentLoaded", function () {
       if (resp.ok) {
         // restituiamo il dato convertito in array da JSON
         return resp.json();
+      } else {
+        throw `Errore ${resp.status} : errore nella creazione del prodotto`;
       }
     })
     .then(prodotti => {
@@ -42,7 +44,7 @@ window.addEventListener("DOMContentLoaded", function () {
           window.location.assign("./dettaglio.html?productId=" + prodotto._id);
         });
         const card = document.createElement("div");
-        card.className = "card mb-4 shadow-sm";
+        card.className = "card mb-4 shadow-sm border border-info";
         const img = document.createElement("img");
         img.className = "bd-placeholder-img card-img-top object-fit-cover";
         img.setAttribute("height", "200");
@@ -57,6 +59,7 @@ window.addEventListener("DOMContentLoaded", function () {
         name.innerText = prodotto.name;
         const p = document.createElement("p");
         p.innerText = prodotto.price + " $";
+        p.className = "text-info";
 
         const divFlex = document.createElement("div");
         divFlex.className = "d-flex justify-content-between align-items-center";
@@ -65,7 +68,7 @@ window.addEventListener("DOMContentLoaded", function () {
         const btnModif = document.createElement("a");
         btnModif.type = "button";
         btnModif.href = "./back-office.html?productId=" + prodotto._id;
-        btnModif.className = "btn  btn-success";
+        btnModif.className = "btn  btn-info";
         btnModif.innerText = "Modifica";
 
         cardBody.append(h5, name, p, divFlex, btnModif);
@@ -74,5 +77,5 @@ window.addEventListener("DOMContentLoaded", function () {
         row.append(col);
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => alert(err));
 });
