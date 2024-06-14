@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", function () {
       // cicliamo appointments per generare tanti elementi "li" nella pagina quanti sono gli oggetti contenuti nell'array
       prodotti.forEach(prodotto => {
         const col = this.document.createElement("div");
-        col.className = "col-md-3";
+        col.className = "col-sm-6 col-md-4 col-lg-3";
         col.addEventListener("click", () => {
           window.location.assign("./dettaglio.html?productId=" + prodotto._id);
         });

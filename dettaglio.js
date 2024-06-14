@@ -22,13 +22,14 @@ window.addEventListener("DOMContentLoaded", function () {
       // svuotiamo il contenitore (togliendo anche lo spinner di conseguenza) e creiamo la struttura già con i dati ottenuti dal server
       container.innerHTML = "";
       const col = this.document.createElement("div");
+      col.className = "col ";
 
       const img = document.createElement("img");
       img.src = prodotto.imageUrl;
       img.className = "object-fit-cover my-3 w-100";
-      img.setAttribute("height", "400");
-      const h1 = document.createElement("h1");
-      h1.innerText = prodotto.brand + " " + prodotto.name;
+      img.setAttribute("height", "500");
+      const h2 = document.createElement("h2");
+      h2.innerText = prodotto.brand + " " + prodotto.name;
       const price = document.createElement("p");
       price.innerText = prodotto.price + " $";
       price.className = "text-primary fs-3 fw-bold";
@@ -37,9 +38,9 @@ window.addEventListener("DOMContentLoaded", function () {
       description.className = " fs-5 fw-bold";
       const modifica = document.createElement("a");
       modifica.innerText = "Modifica";
-      modifica.className = "btn  btn-secondary fs-5 mb-3";
+      modifica.className = "btn  btn-success fs-5 my-3";
       modifica.addEventListener("click", handleEditBtnClick);
-      col.append(img, h1, price, description, modifica);
+      col.append(img, h2, price, description, modifica);
       container.append(col);
     })
     .catch(err => console.log(err));

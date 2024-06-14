@@ -14,7 +14,13 @@ window.addEventListener("DOMContentLoaded", function () {
   const subtitle = document.getElementById("subtitle");
   const submitBtn = document.querySelector("button[type='submit']");
   const deleteBtn = document.querySelector("button[type='button'].btn-danger");
-
+  const resetBtn = document.querySelector("button[type='button'].btn-secondary");
+  resetBtn.addEventListener("click", () => {
+    const hasConfirmed = confirm("sei sicuro di voler fare reset del form?");
+    if (hasConfirmed) {
+      form.reset();
+    }
+  });
   // 0) inizio codice di gestione modalità modifica
   // al caricamento della pagina facciamo richiesta al server di tornarci i dati specifici della risorsa con l'id che troviamo nella URL
   if (id) {
@@ -25,6 +31,7 @@ window.addEventListener("DOMContentLoaded", function () {
     submitBtn.classList.add("btn-success");
     // 3) il bottone delete diventa visibile
     deleteBtn.classList.remove("d-none");
+    resetBtn.classList.add("d-none");
     // 4) assegnamo al bottone un evento di tipo click
     deleteBtn.onclick = handleDelete;
 
@@ -79,7 +86,7 @@ const handleDelete = () => {
         }
       })
       .then(prodottoCancellato => {
-        alert("Hai eliminato l'appuntamento " + prodottoCancellato.brand + " " + prodottoCancellato.name);
+        alert("Hai eliminato il prodotto " + prodottoCancellato.brand + " " + prodottoCancellato.name);
         // l'alert è bloccante, questa operazione avverrà solo dopo che l'utente lo chiuderà
         // se non usassimo un alert qui servirebbe ritardare l'esecuzione del metodo assign di window,
         // ma siccome alert è "bloccante" in questo specifico caso non occorre
@@ -128,6 +135,7 @@ const handleSubmit = e => {
 
       if (id) {
         alert(`Prodotto ${prodottoCreato.brand} ${prodottoCreato.name} MODIFICATO con successo!`);
+        window.location.assign("./index.html");
       } else {
         alert(`Prodotto ${prodottoCreato.brand} ${prodottoCreato.name} CREATO con successo!`);
         e.target.reset(); // reset dei campi del form solo in modalità CREAZIONE (POST)
