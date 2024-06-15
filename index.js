@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", function () {
         // restituiamo il dato convertito in array da JSON
         return resp.json();
       } else {
-        throw `Errore ${resp.status} : errore nella creazione del prodotto`;
+        throw `Errore ${resp.status} : ${resp.statusText} `;
       }
     })
     .then(prodotti => {

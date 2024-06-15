@@ -81,6 +81,8 @@ const handleDelete = () => {
       .then(resp => {
         if (resp.ok) {
           return resp.json();
+        } else {
+          throw `Errore ${resp.status} : ${resp.statusText} `;
         }
       })
       .then(prodottoCancellato => {
@@ -121,7 +123,7 @@ const handleSubmit = e => {
       if (resp.ok) {
         return resp.json();
       } else {
-        throw `Errore ${resp.status} : errore nella creazione del prodotto`;
+        throw `Errore ${resp.status} : ${resp.statusText} `;
       }
     })
     .then(prodottoCreato => {

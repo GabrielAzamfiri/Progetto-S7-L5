@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", function () {
       if (resp.ok) {
         return resp.json();
       } else {
-        throw `Errore ${resp.status} : errore nella creazione del prodotto`;
+        throw `Errore ${resp.status} : ${resp.statusText} `;
       }
     })
     .then(prodotto => {
