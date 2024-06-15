@@ -12,14 +12,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // prendo il riferimento ai bottoni e al sottotitolo che modificheremo in seguito
   const subtitle = document.getElementById("subtitle");
+
   const submitBtn = document.querySelector("button[type='submit']");
   const deleteBtn = document.querySelector("button[type='button'].btn-danger");
   const resetBtn = document.querySelector("button[type='button'].btn-secondary");
-  resetBtn.addEventListener("click", () => {
-    const hasConfirmed = confirm("sei sicuro di voler fare reset del form?");
-    if (hasConfirmed) {
-      form.reset();
-    }
+  const resetSicuro = document.getElementById("reset-modal-btn");
+
+  resetSicuro.addEventListener("click", () => {
+    form.reset();
   });
   // 0) inizio codice di gestione modalità modifica
   // al caricamento della pagina facciamo richiesta al server di tornarci i dati specifici della risorsa con l'id che troviamo nella URL

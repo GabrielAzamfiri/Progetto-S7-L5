@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", function () {
       const img = document.createElement("img");
       img.src = prodotto.imageUrl;
       img.className = "object-fit-cover my-3 w-100 border border-info";
-      img.setAttribute("height", "500");
+      // img.setAttribute("height", "500");
       const h2 = document.createElement("h2");
       h2.innerText = prodotto.brand + " " + prodotto.name;
       const price = document.createElement("p");
